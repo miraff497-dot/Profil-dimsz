@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimas Rifandi - Personal Website</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Global Styles & Reset --- */
+        :root {
+            --primary-color: #00d4ff; /* Cyan untuk aksen */
+            --secondary-color: #ffffff; /* Putih untuk teks utama */
+            --bg-color: #0a0a0a; /* Hitam pekat */
+            --card-bg: rgba(255, 255, 255, 0.05); /* Background kartu semi-transparan */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--secondary-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- Animated Starfield Background --- */
+        #stars-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* --- Header Section --- */
+        .header-content {
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 0 20px var(--primary-color);
+            object-fit: cover;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            font-weight: 300;
+        }
+
+        /* --- About Section --- */
+        #about .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* --- Languages Section --- */
+        .lang-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .lang-item {
+            text-align: center;
+        }
+        .lang-item h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        .lang-item p {
+            font-size: 1rem;
+            color: #b0b0b0;
+        }
+
+        /* --- Programming Languages Section --- */
+        .lang-prog-item {
+            margin-bottom: 25px;
+        }
+        .lang-prog-item h4 {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .bar-container {
+            background-color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 20px;
+        }
+        .bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), #0099cc);
+            border-radius: 10px;
+            width: 0; /* Akan dianimasikan dengan JS */
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* --- Other Expertise Section --- */
+        .expertise-list {
+            list-style: none;
+            text-align: center;
+        }
+        .expertise-list li {
+            background: var(--card-bg);
+            margin: 15px auto;
+            padding: 20px;
+            max-width: 600px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+        .expertise-list li:hover {
+            transform: translateX(10px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h2 { font-size: 2rem; }
+            .header-content h1 { font-size: 2.2rem; }
+            section { padding: 60px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Starfield Background -->
+    <div id="stars-bg"></div>
+
+    <!-- =================== HEADER =================== -->
+    <header id="home">
+        <div class="container header-content">
+            <!-- GANTI DENGAN LOGO ANDA (bisa berupa teks atau gambar) -->
+            <div class="logo">DIMSZ</div>
+            
+            <!-- GANTI DENGAN FOTO PROFIL ANDA -->
+            <!-- Pastikan foto berbentuk persegi agar hasilnya bagus -->
+            <img src="https://files.catbox.moe/dyd8uc.jpg" alt="Foto Profil" class="profile-img">
+            
+            <!-- GANTI DENGAN NAMA DAN TAGLINE ANDA -->
+            <h1>Dimas Rifandi</h1>
+            <p>Full-Stack Developer & Creative Technologist</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- =================== ABOUT SECTION =================== -->
+        <section id="about">
+            <div class="container">
+                <h2>Tentang Saya</h2>
+                <div class="about-content">
+                    <!-- GANTI DENGAN PENJELASAN TENTANG DIRI ANDA -->
+                    <p>Saya adalah seorang pengembang yang penuh semangat dengan keahlian di bidang pengembangan web full-stack dan otomasi. Dengan fondasi yang kuat dalam memecahkan masalah yang kompleks, saya berdedikasi untuk menciptakan solusi digital yang inovatif, efisien, dan berpusat pada pengguna. Saya percaya bahwa teknologi adalah alat untuk mewujudkan ide-ide kreatif dan menyederhanakan proses, termasuk melalui penciptaan bot cerdas yang dapat mengotomatisasi tugas-tugas repetitif.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================== SKILLS SECTION =================== -->
+        <section id="skills">
+            <div class="container">
+                <h2>Keahlian Saya</h2>
+                <div class="skills-grid">
+                    <!-- GANTI DENGAN 10 SKILL ANDA -->
+                    <div class="skill-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Web Development</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-robot"></i>
+                        <h3>Bot Development</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-paint-brush"></i>
+                        <h3>UI/UX Design</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-database"></i>
+                        <h3>Database Management</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-plug"></i>
+                        <h3>API Integration</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Cloud Computing</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Problem Solving</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-git-alt"></i>
+                        <h3>Version Control (Git)</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>Agile Methodologies</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>Creative Thinking</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================== LANGUAGES SECTION =================== -->
+        <section id="languages">
+            <div class="container">
+                <h2>Bahasa</h2>
+                <div class="lang-container">
+                    <!-- GANTI DENGAN BAHASA YANG ANDA KUASAI -->
+                    <div class="lang-item">
+                        <h3>Bahasa Indonesia</h3>
+                        <p>Native</p>
+                    </div>
+                    <div class="lang-item">
+                        <h3>English</h3>
+                        <p>Professional</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================== PROGRAMMING LANGUAGES SECTION =================== -->
+        <section id="prog-langs">
+            <div class="container">
+                <h2>Bahasa Pemrograman</h2>
+                <div class="lang-prog-container">
+                    <!-- GANTI DENGAN 6 BAHASA PEMROGRAMAN ANDA. Atur 'data-width' untuk persentase kemampuan -->
+                    <div class="lang-prog-item">
+                        <h4>JavaScript / TypeScript</h4>
+                        <div class="bar-container">
+                            <div class="bar" data-width="95%"></div>
+                        </div>
+                    </div>
+                    <div class="lang-prog-item">
+                        <h4>Python</h4>
+                        <div class="bar-container">
+                            <div class="bar" data-width="90%"></div>
+                        </div>
+                    </div>
+                    <div class="lang-prog-item">
+                        <h4>PHP</h4>
+                        <div class="bar-container">
+                            <div class="bar" data-width="85%"></div>
+                        </div>
+                    </div>
+                    <div class="lang-prog-item">
+                        <h4>SQL</h4>
+                        <div class="bar-container">
+                            <div class="bar" data-width="80%"></div>
+                        </div>
+                    </div>
+                    <div class="lang-prog-item">
+                        <h4>Go (Golang)</h4>
+                        <div class="bar-container">
+                            <div class="bar" data-width="70%"></div>
+                        </div>
+                    </div>
+                    <div class="lang-prog-item">
+                        <h4>Rust</h4>
+                        <div class="bar-container">
+                            <div class="bar" data-width="60%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================== OTHER EXPERTISE SECTION =================== -->
+        <section id="other-expertise">
+            <div class="container">
+                <h2>Keahlian DIMSZ•_•</h2>
+                <!-- GANTI DENGAN KEAHLIAN LAINNYA (TERMASUK BOT) -->
+                <ul class="expertise-list">
+                    <li><i class="fas fa-check-circle" style="color: var(--primary-color); margin-right: 10px;"></i> Pengembangan Chatbot (WhatsApp, Telegram, Web)</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary-color); margin-right: 10px;"></i> Pencipta Bot Otomasi untuk Media Sosial & E-commerce</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary-color); margin-right: 10px;"></i> Integrasi API (Payment Gateway, Email Service, dsb.)</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--primary-color); margin-right: 10px;"></i> Analisis Data & Visualisasi</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- =================== FOOTER =================== -->
+    <footer>
+        <p>&copy; 2025 Dimas Rifandi. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // --- SCRIPT UNTUK MEMBUAT BINTANG-BINTANG ---
+        const starsBg = document.getElementById('stars-bg');
+        const starCount = 150;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            
+            // Posisi acak
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            
+            // Ukuran acak
+            const size = Math.random() * 3;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            
+            // Delay animasi acak
+            star.style.animationDelay = `${Math.random() * 4}s`;
+            
+            starsBg.appendChild(star);
+        }
+
+        // --- SCRIPT UNTUK ANIMASI BAR KEMAJUAN (PROGRESS BAR) ---
+        const progressBars = document.querySelectorAll('.bar');
+        
+        // Menggunakan Intersection Observer untuk memicu animasi saat elemen terlihat
+        const observerOptions = {
+            threshold: 0.5 // Animasi dimulai saat 50% elemen terlihat
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width;
+                    observer.unobserve(bar); // Hanya animasi sekali
+                }
+            });
+        }, observerOptions);
+
+        progressBars.forEach(bar => {
+            observer.observe(bar);
+        });
+    </script>
+
+</body>
+</html>
